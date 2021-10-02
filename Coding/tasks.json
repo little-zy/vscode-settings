@@ -1,0 +1,107 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C++_Compile",
+            "command": "g++", //编译程序
+            "args": [
+                //! on the OJ:  " G++ 5.4" ;/usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c11 {src_path} -lm -o {exe_path}
+                "-DONLINE_JUDGE -O2 -w -fmax-errors=3", //? new added
+                "-g",
+                "${file}", //指定编译源代码文件
+                "-lm", //? new added
+                "-I", //? renew added
+                "${workspaceRoot}", //? renew added
+                //"D:\\VS_Code_Files\\Coding\\C++\\source_code\\0—StanfordCPPLib\\simpio.h",//? renew added
+                // "D:\\VS_Code_Files\\Coding\\C++\\sjjg\\cpp.h\\zyalt.h",
+                // "D:\\VS_Code_Files\\Coding\\C++\\sjjg\\cpp.h\\zyalt.cpp",
+                "-o",
+                "${workspaceRoot}\\Debug\\${relativeFileDirname}\\${fileBasenameNoExtension}.exe", // 指定输出文件名，不加该参数则默认输出a.exe
+                "-ggdb3", // 生成和调试有关的信息
+                "-Wall", // 开启额外警告
+                "-static-libgcc", // 静态链接
+                "-std=c++2a", //使用C++20标准
+                "-Wno-format",
+                "-finput-charset=UTF-8", //输入编译器文本编码 默认为UTF-8
+                "-fexec-charset=UTF-8" //编译器输出文本编码 自行选择
+            ],
+            "type": "shell",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent", // 在“终端”中显示编译信息的策略，可以为always，silent，never
+                "focus": false,
+                "panel": "shared" // 不同的文件的编译信息共享一个终端面板
+            },
+            "problemMatcher": {
+                "owner": "cpp", //"gcc",
+                "fileLocation": [
+                    "relative",
+                    "\\"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            //"options": {
+            //    "cwd": "/usr/bin"
+            //},
+            //"group": "build"
+        },
+        {
+            "label": "C_Compile",
+            "command": "gcc",
+            "args": [
+                //! on the OJ: "GCC 5.4"; /usr/bin/gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c11 {src_path} -lm -o {exe_path}
+                "-DONLINE_JUDGE -O2 -w -fmax-errors=3", //? new added
+                "-g",
+                "${file}",
+                "-lm", //? new added
+                "-o",
+                "${workspaceRoot}\\Debug\\${relativeFileDirname}\\${fileBasenameNoExtension}.exe",
+                "-ggdb3",
+                "-Wall",
+                "-static-libgcc",
+                "-std=c11",
+                "-Wno-format",
+                "-finput-charset=UTF-8",
+                "-fexec-charset=UTF-8"
+            ],
+            "type": "shell",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": {
+                "owner": "gcc",
+                "fileLocation": [
+                    "relative",
+                    "\\"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+        }
+    ]
+}
+//todo 
+/* 
+Java ( OpenJDK 1.8 )
+/usr/bin/javac {src_path} -d {exe_dir} -encoding UTF8
+Python2 ( Python 2.7 )
+/usr/bin/python -m py_compile {src_path}
+Python3 ( Python 3.5 )
+/usr/bin/python3 -m py_compile {src_path} 
+*/
